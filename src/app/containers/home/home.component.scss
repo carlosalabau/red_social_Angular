@@ -1,0 +1,73 @@
+@import '../../../styles.scss';
+
+.posts {
+  margin-top: 100px;
+}
+
+.imagen-post img {
+  width: 100%;
+  max-height: 500px;
+  min-height: 350px;
+}
+
+.imagen-post {
+  width: 100%;
+  min-height: 350px;
+  max-height: 500px;
+  padding: 10px 0;
+}
+
+.card-deck {
+  padding: 15px 0;
+}
+
+.card-body p {
+  margin: 0;
+}
+
+.fecha {
+  font-size: 12px
+}
+
+.contadores {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.comentarios {
+  padding-top: 15px;
+}
+
+.comentarios input {
+  margin-left: 10px;
+  border-radius: 5px;
+  width: 80%;
+}
+
+.contactos {
+  margin-top: 100px;
+  position: relative !important;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.contacts {
+  position: fixed;
+  margin-top: 20px;
+}
+
+.enviar {
+  height: 38px;
+  border-color: $verdePrincipal;
+  color: $verdePrincipal;
+  margin-left: 10px;
+}
+
+.enviar:hover{
+  background-color: $verdePrincipal;
+  color: white;
+}
+.imagen-perfil{
+    margin-right: 10px;
+    border-radius: 50%;
+}

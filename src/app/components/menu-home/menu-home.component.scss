@@ -6,8 +6,25 @@ nav{
     width: 100%;
     background-color: $negroMenu;
     color: white;
-    padding: 0 15px;
+    z-index: 999;
 }
-.buscador i{
-    font-size: ;
+.logo{
+    font-size: 40px;
+    margin-right: 20px;
+    color: $verdePrincipal;
+}
+.row{
+    height: 80px;
+}
+.principal i{
+    padding: 0 10px;
+    font-size: 30px;
+}
+.perfil i{
+    padding: 0 10px;
+    font-size: 20px;
+}
+.perfil i:hover, .principal i:hover{
+    color: $verdePrincipal;
+    cursor: pointer;
 }

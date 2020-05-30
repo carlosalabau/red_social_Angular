@@ -1,1 +1,46 @@
 <app-menu-home></app-menu-home>
+<div class="container">
+  <div class="row">
+    <div class="col-xl-8 col-lg-8 col-md-8 d-flex flex-column posts">
+      <div class="card-deck">
+        <div class="card">
+          <div class="card-body d-flex flex-row">
+            <img src="" alt="..." class="imagen-perfil">
+            <input type="text" class="form-control" placeholder="¿Que quieres contar?" /> 
+            <button type="button" class="btn btn-outline-success enviar">Enviar</button>
+          </div>
+        </div>
+      </div>
+      <div class="card-deck" *ngFor="let post of posts">
+        <div class="card">
+          <div class="card-body">
+            <p class="card-text">{{post.id_miembro}}</p>
+            <p class="card-text fecha">{{post.created_at | date:'short'}}</p>
+            <h5 class="card-title">{{post.titulo}}</h5>
+          </div>
+          <div class="imagen-post">
+            <img src="../../../assets/img/no-user.png" class="card-img-top" alt="">
+          </div>
+          <div class="card-body">
+            <div class="card-text contadores d-flex justify-content-between flex-row">
+              <p class="text-muted">2 Likes</p>
+              <p class="text-muted">56 comentarios</p>
+            </div>
+            <div class="card-footer comentarios d-flex flex-row align-items-center">
+              <p><i class="far fa-hand-spock"></i> Me gusta</p>
+              <input type="text" class="form-control" placeholder="Escribe un comentario" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-4 col-lg-4 col-md-4 contactos">
+      <div class="contacts">
+        <h5>Contactos</h5>
+        <p *ngFor="let miembro of miembros">
+          {{miembro.nombre}}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

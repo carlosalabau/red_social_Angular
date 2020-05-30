@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MiembrosService } from '../../services/miembros.service';
-
+import { PostsService } from 'src/app/services/posts.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -9,17 +9,27 @@ import { MiembrosService } from '../../services/miembros.service';
 export class HomeComponent implements OnInit {
 
   miembros = [];
-
-  constructor( private miembroService: MiembrosService) { }
+  posts = [];
+  constructor( 
+    private miembroService: MiembrosService,
+    private postService: PostsService
+    ) { }
 
   ngOnInit(): void {
     this.listarMiembros();
+    this.listarPosts();
   }
 
   listarMiembros(){
     this.miembroService.obtenerMiembros().subscribe((res: any) => {
       this.miembros = res;
-      console.log(this.miembros)
+    });
+  }
+
+  listarPosts(){
+    this.postService.obtenerPosts().subscribe((res: any) => {
+      this.posts = res;
+      console.log(this.posts);
     });
   }
 
