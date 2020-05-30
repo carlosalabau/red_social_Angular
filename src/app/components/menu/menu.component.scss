@@ -1,0 +1,28 @@
+@import '../../../styles.scss';
+nav{
+    background-color: $negroMenu;
+    height: 80px;
+    position: fixed;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+}
+.logo{
+    color: $verdePrincipal;
+    font-size: 40px;
+    padding: 0 15px;
+}
+.titulo{
+    color: white;
+    line-height: 2px;
+}
+.botones{
+    padding: 0 15px
+}
+.botones button:first-child{
+    margin-right: 10px;
+}
+.btn-outline-success:hover{
+    background-color: $verdePrincipal;
+    color: $negroMenu;
+}

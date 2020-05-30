@@ -1,0 +1,26 @@
+@import '../../../styles.scss';
+.container-fluid{
+    height: 100vh;
+    background-size: contain;
+    background: url('src/assets/img/skate.png')repeat; 
+}
+.formulario{
+    background-color: white;
+    margin-top: 10%;
+    margin-left:3%;
+    border-radius: 10px;
+    padding: 20px 20px;
+}
+.formulario input{
+    margin: 0;
+}
+.input-field{
+    margin: 0 !important;
+}
+.genero{
+    margin-top: 20px;
+}
+.registro{
+    background-color: $verdePrincipal;
+    border:none;
+}
