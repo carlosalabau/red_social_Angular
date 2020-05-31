@@ -26,7 +26,8 @@
 }
 
 .fecha {
-  font-size: 12px
+  font-size: 12px;
+  margin-top: 10px !important;
 }
 
 .contadores {
@@ -70,4 +71,5 @@
 .imagen-perfil{
     margin-right: 10px;
     border-radius: 50%;
+    width: 60px;
 }

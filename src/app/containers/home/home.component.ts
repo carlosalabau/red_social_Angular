@@ -10,26 +10,26 @@ export class HomeComponent implements OnInit {
 
   miembros = [];
   posts = [];
-  constructor( 
+  nombreMiembro = '';
+
+  constructor(
     private miembroService: MiembrosService,
     private postService: PostsService
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     this.listarMiembros();
     this.listarPosts();
   }
 
-  listarMiembros(){
+  listarMiembros() {
     this.miembroService.obtenerMiembros().subscribe((res: any) => {
       this.miembros = res;
     });
   }
-
-  listarPosts(){
+  listarPosts() {
     this.postService.obtenerPosts().subscribe((res: any) => {
       this.posts = res;
-      console.log(this.posts);
     });
   }
 

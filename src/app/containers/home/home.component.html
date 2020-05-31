@@ -14,19 +14,19 @@
       <div class="card-deck" *ngFor="let post of posts">
         <div class="card">
           <div class="card-body">
-            <p class="card-text">{{post.id_miembro}}</p>
+            <p class="card-text"><img src="{{post.miembros.imagen}}" class="imagen-perfil" />{{post.miembros.nombre}}</p>
             <p class="card-text fecha">{{post.created_at | date:'short'}}</p>
             <h5 class="card-title">{{post.titulo}}</h5>
           </div>
           <div class="imagen-post">
-            <img src="../../../assets/img/no-user.png" class="card-img-top" alt="">
+            <img src="{{post.imagen}}" class="card-img-top" alt="">
           </div>
           <div class="card-body">
             <div class="card-text contadores d-flex justify-content-between flex-row">
-              <p class="text-muted">2 Likes</p>
+              <p class="text-muted">{{post.like.length}} Likes</p>
               <p class="text-muted">56 comentarios</p>
             </div>
-            <div class="card-footer comentarios d-flex flex-row align-items-center">
+            <div class="card-text comentarios d-flex flex-row align-items-center">
               <p><i class="far fa-hand-spock"></i> Me gusta</p>
               <input type="text" class="form-control" placeholder="Escribe un comentario" />
             </div>

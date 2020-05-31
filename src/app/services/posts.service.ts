@@ -6,12 +6,11 @@ import { HttpClient } from '@angular/common/http';
 })
 export class PostsService {
 
-  URL = 'http://localhost:8000/api/posts';
+  URL = 'http://localhost:8000/api/posts/';
 
   constructor(private http: HttpClient) { }
 
   obtenerPosts(){
     return this.http.get(this.URL);
   }
-
 }
