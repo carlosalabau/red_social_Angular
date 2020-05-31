@@ -14,7 +14,9 @@ export class MiembrosService {
   obtenerMiembros(){
     return this.http.get(this.url);
   }
-
+  addMiembro(miembro){
+    return this.http.post(this.url, miembro);
+  }
 
 
 }

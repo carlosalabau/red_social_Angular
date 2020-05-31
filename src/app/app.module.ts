@@ -10,6 +10,7 @@ import { MenuComponent } from './components/menu/menu.component';
 import { MenuHomeComponent } from './components/menu-home/menu-home.component';
 import { AddPostComponent } from './containers/add-post/add-post.component';
 import { FormsModule } from '@angular/forms';
+import { LoginComponent } from './containers/login/login.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { FormsModule } from '@angular/forms';
     RegistroComponent,
     MenuComponent,
     MenuHomeComponent,
-    AddPostComponent
+    AddPostComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
