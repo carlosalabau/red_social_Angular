@@ -2,22 +2,23 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-body">
-        <form>
+        <form #loginForm="ngForm" (submit)="newLogin(loginForm)">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
           <div class="form-group">
             <label for="exampleInputEmail1">Email</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <input type="email" ngModel class="form-control" name="email">
           </div>
           <div class="form-group">
             <label for="exampleInputPassword1">Contraseña</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" aria-describedby="passhelp">
+            <input type="password" ngModel class="form-control" name="password" aria-describedby="passhelp">
             <small id="passhelp" class="form-text text-muted">Debe tener entre 8 y 20 caracteres</small>
           </div>
-          <button type="submit" class="btn btn-primary col loginBtn">Entra!</button>
+          <button type="submit" class="btn btn-primary col loginBtn" data>Entra!</button>
         </form>
       </div>
     </div>
   </div>
 </div>
+

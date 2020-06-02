@@ -10,11 +10,30 @@ export class PostsService {
 
   constructor(private http: HttpClient) { }
 
-  obtenerPosts(){
-    return this.http.get(this.URL);
+  obtenerPosts(token) {
+    return this.http.get(this.URL, {
+      headers: {
+        Authorization: 'Bearer ' + token
+      }
+    });
   }
-  addPost(body){
-    console.log(body)
+  addPost(body) {
     return this.http.post(this.URL, body);
+  }
+  like(body, token) {
+    console.log(body);
+    return this.http.post(this.URL + '/like', body, {
+      headers: {
+        Authorization: 'Bearer ' + token
+      }
+    });
+  }
+  dislikes(body, token) {
+    console.log(body)
+    return this.http.post(this.URL + '/dislike', body, {
+      headers: {
+        Authorization: 'Bearer ' + token
+      }
+    });
   }
 }

@@ -5,8 +5,8 @@
       <div class="card-deck">
         <div class="card">
           <div class="card-body d-flex flex-row">
-            <img src="" alt="..." class="imagen-perfil">
-            <input type="text" class="form-control" placeholder="¿Que quieres contar?" /> 
+            <img src="{{user['imagen']}}" alt="..." class="imagen-perfil">
+            <input type="text" class="form-control" placeholder="¿Que quieres contar?" />
             <button type="button" class="btn btn-outline-success enviar">Enviar</button>
           </div>
         </div>
@@ -14,7 +14,7 @@
       <div class="card-deck" *ngFor="let post of posts">
         <div class="card">
           <div class="card-body">
-            <p class="card-text"><img src="{{post.miembros.imagen}}" class="imagen-perfil" />{{post.miembros.nombre}}</p>
+            <p class="card-text"><img src="{{post.user.imagen}}" class="imagen-perfil" />{{post.user.nombre}}</p>
             <p class="card-text fecha">{{post.created_at | date:'short'}}</p>
             <h5 class="card-title">{{post.titulo}}</h5>
           </div>
@@ -23,11 +23,17 @@
           </div>
           <div class="card-body">
             <div class="card-text contadores d-flex justify-content-between flex-row">
-              <p class="text-muted">{{post.like.length}} Likes</p>
-              <p class="text-muted">56 comentarios</p>
+              <p class="text-muted">{{post.likes.length}} Likes</p>
+              <p class="text-muted">{{post.coments.length}} comentarios</p>
             </div>
             <div class="card-text comentarios d-flex flex-row align-items-center">
-              <p><i class="far fa-hand-spock"></i> Me gusta</p>
+              <div *ngIf="post.color === 'blue'; then thenBlock else elseBlock"></div>
+                <ng-template #thenBlock>
+                  <a (click)="darLike(post.id)"><i style="color:'blue'" class="far fa-hand-spock"></i> Like</a>
+                </ng-template>
+                <ng-template #elseBlock>
+                  <a (click)="dislikes(post.id)"><i  style="color:'red'" class="far fa-hand-spock"></i> Dislike</a>
+                </ng-template>
               <input type="text" class="form-control" placeholder="Escribe un comentario" />
             </div>
           </div>

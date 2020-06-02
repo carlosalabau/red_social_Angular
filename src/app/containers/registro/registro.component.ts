@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MiembrosService } from 'src/app/services/miembros.service';
+import { UserService } from 'src/app/services/user.service';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -9,13 +9,13 @@ import { NgForm } from '@angular/forms';
 })
 export class RegistroComponent implements OnInit {
 
-  constructor(private miembroService: MiembrosService) { }
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
   }
 
-  nuevoMiembro(formRegistro: NgForm) {
-    this.miembroService.addMiembro(formRegistro.value).subscribe(() => {
+  nuevoUser(formRegistro: NgForm) {
+    this.userService.addUser(formRegistro.value).subscribe(() => {
       setTimeout(() => {
         formRegistro.reset();
       }, 500);
