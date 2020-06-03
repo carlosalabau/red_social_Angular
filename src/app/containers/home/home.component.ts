@@ -1,7 +1,7 @@
-import { Component, OnInit, ɵɵresolveBody } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { PostsService } from 'src/app/services/posts.service';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+declare var $: any;
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -19,7 +19,6 @@ export class HomeComponent implements OnInit {
   likes = [];
   valor = '';
   color = 'blue';
-
 
   constructor(
     private userService: UserService,
@@ -83,7 +82,8 @@ export class HomeComponent implements OnInit {
       post.nLike = res.nDislike;
     });
   }
-
-
+  openComent(id) {
+      $('#comentarios' + id).toggle();
+  }
 
 } // Cierre final

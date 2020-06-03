@@ -28,9 +28,9 @@ export class MenuHomeComponent implements OnInit {
   }
   cerrarSesion() {
     const token = localStorage.getItem('token');
+    this.router.navigate(['/']);
     this.userService.logout(token).subscribe(() => {
       localStorage.removeItem('token');
-      this.router.navigate(['/']);
     });
   }
   busqueda(letra) {

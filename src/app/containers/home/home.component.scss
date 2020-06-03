@@ -35,11 +35,11 @@
   padding-bottom: 10px;
 }
 
-.comentarios {
+.likes {
   padding-top: 15px;
 }
 
-.comentarios input {
+.likes input {
   margin-left: 10px;
   border-radius: 5px;
   width: 80%;
@@ -75,4 +75,18 @@
 }
 .modal-open{
   display: none;
+}
+.imagen-coment{
+  margin-right: 10px;
+  border-radius: 50%;
+  width: 40px;
+}
+.comentarios{
+  display: none;
+}
+.coments{
+  padding: 10px 10px;
+  border: 1px solid #eee;
+  margin: 10px 0;
+  border-radius: 5px;
 }
