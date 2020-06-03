@@ -23,16 +23,16 @@
           </div>
           <div class="card-body">
             <div class="card-text contadores d-flex justify-content-between flex-row">
-              <p class="text-muted">{{post.likes.length}} Likes</p>
+              <p class="text-muted">{{post.nLike}} Likes</p>
               <p class="text-muted">{{post.coments.length}} comentarios</p>
             </div>
             <div class="card-text comentarios d-flex flex-row align-items-center">
               <div *ngIf="post.color === 'blue'; then thenBlock else elseBlock"></div>
                 <ng-template #thenBlock>
-                  <a (click)="darLike(post.id)"><i style="color:'blue'" class="far fa-hand-spock"></i> Like</a>
+                  <a (click)="darLike(post)"><i style="color:'blue'" class="far fa-hand-spock"></i> Like</a>
                 </ng-template>
                 <ng-template #elseBlock>
-                  <a (click)="dislikes(post.id)"><i  style="color:'red'" class="far fa-hand-spock"></i> Dislike</a>
+                  <a (click)="dislikes(post)"><i  style="color:'red'" class="far fa-hand-spock"></i> Dislike</a>
                 </ng-template>
               <input type="text" class="form-control" placeholder="Escribe un comentario" />
             </div>

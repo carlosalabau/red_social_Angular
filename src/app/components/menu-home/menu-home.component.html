@@ -1,3 +1,12 @@
+<div class="modal fade" id="busqueda" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <p *ngFor="let nombre of nombres">{{nombre.nombre}}</p>
+      </div>
+    </div>
+  </div>
+</div>
 <app-add-post></app-add-post>
 <nav>
   <div class="container">
@@ -8,7 +17,8 @@
           <div class="input-group-prepend">
             <div class="input-group-text"><i class="fas fa-search"></i></div>
           </div>
-          <input type="text" class="form-control">
+          <input type="text" ng class="form-control" name="buscador" id="buscador" [(ngModel)]="letra" (keyup)="busqueda(letra)" />
+          <div class="resultados" id="resultados" style="display:{{display}}" ><p *ngFor="let element of nombres">{{element.nombre}}</p></div>
         </div>
       </div>
       <div class="principal d-flex align-items-center">

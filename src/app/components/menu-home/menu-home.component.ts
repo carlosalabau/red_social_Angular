@@ -11,7 +11,10 @@ export class MenuHomeComponent implements OnInit {
 
   constructor(private userService: UserService, private router: Router) { }
 
+  letra = '';
   user = {};
+  nombres = [];
+  display = 'none';
 
   ngOnInit(): void {
     this.listarUser();
@@ -28,6 +31,17 @@ export class MenuHomeComponent implements OnInit {
     this.userService.logout(token).subscribe(() => {
       localStorage.removeItem('token');
       this.router.navigate(['/']);
+    });
+  }
+  busqueda(letra) {
+    const token = localStorage.getItem('token');
+    if (this.letra.length < 1) {
+      this.display = 'none';
+      return;
+    }
+    this.userService.search(letra, token).subscribe((res: any) => {
+      this.nombres = res['busqueda'];
+      this.display = 'block';
     });
   }
 }

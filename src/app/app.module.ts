@@ -11,6 +11,7 @@ import { MenuHomeComponent } from './components/menu-home/menu-home.component';
 import { AddPostComponent } from './containers/add-post/add-post.component';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './containers/login/login.component';
+import { BusquedaComponent } from './containers/busqueda/busqueda.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { LoginComponent } from './containers/login/login.component';
     MenuComponent,
     MenuHomeComponent,
     AddPostComponent,
-    LoginComponent
+    LoginComponent,
+    BusquedaComponent
   ],
   imports: [
     BrowserModule,

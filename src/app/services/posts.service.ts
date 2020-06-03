@@ -21,7 +21,6 @@ export class PostsService {
     return this.http.post(this.URL, body);
   }
   like(body, token) {
-    console.log(body);
     return this.http.post(this.URL + '/like', body, {
       headers: {
         Authorization: 'Bearer ' + token

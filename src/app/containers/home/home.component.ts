@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵɵresolveBody } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { PostsService } from 'src/app/services/posts.service';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit {
   likes = [];
   valor = '';
   color = 'blue';
+
 
   constructor(
     private userService: UserService,
@@ -54,6 +55,7 @@ export class HomeComponent implements OnInit {
   comprobarLike() {
     this.posts.forEach(post => {
       post.color = 'blue';
+      post.nLike = post.likes.length;
       post.likes.forEach(like => {
         if (post.id === like.pivot.id_post && like.pivot.id_user === this.user['id']) {
           post.color = 'red';
@@ -63,20 +65,22 @@ export class HomeComponent implements OnInit {
       });
     });
   }
-  darLike(idPost) {
+  darLike(post) {
     const token = localStorage.getItem('token');
-    this.ids.id_post = idPost;
+    this.ids.id_post = post.id;
     this.ids.id_user = this.user['id'];
-    this.postService.like(this.ids, token).subscribe(() => {
-      this.listarPosts();
+    this.postService.like(this.ids, token).subscribe((res: any) => {
+      post.color = 'red';
+      post.nLike = res.nLike;
     });
   }
-  dislikes(idPost) {
+  dislikes(post) {
     const token = localStorage.getItem('token');
-    this.ids.id_post = idPost;
+    this.ids.id_post = post.id;
     this.ids.id_user = this.user['id'];
-    this.postService.dislikes(this.ids, token).subscribe(() => {
-      this.listarPosts();
+    this.postService.dislikes(this.ids, token).subscribe((res: any) => {
+      post.color = 'blue';
+      post.nLike = res.nDislike;
     });
   }
 

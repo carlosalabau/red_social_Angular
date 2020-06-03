@@ -31,3 +31,16 @@ nav{
     color: $verdePrincipal;
     cursor: pointer;
 }
+.resultados{
+  position: absolute;
+  width: 241px;
+  height: auto;
+  background-color: white;
+  z-index: 999;
+  margin-top: 41px;
+}
+.resultados p{
+  color:$negroMenu;
+  padding:10px 10px;
+  border-bottom: 1px solid #eee;
+}
