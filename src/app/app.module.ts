@@ -11,7 +11,9 @@ import { MenuHomeComponent } from './components/menu-home/menu-home.component';
 import { AddPostComponent } from './containers/add-post/add-post.component';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './containers/login/login.component';
-import { ComentsComponent } from './containers/coments/coments.component';
+import { CommentsComponent } from './containers/comments/comments.component';
+import { PerfilComponent } from './containers/perfil/perfil.component';
+import { UsersComponent } from './containers/users/users.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { ComentsComponent } from './containers/coments/coments.component';
     MenuHomeComponent,
     AddPostComponent,
     LoginComponent,
-    ComentsComponent
+    CommentsComponent,
+    PerfilComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,

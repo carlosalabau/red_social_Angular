@@ -1,0 +1,30 @@
+<app-menu-home></app-menu-home>
+<div class="container">
+  <div class="row">
+    <div class="imagen-perfil" style="background: url({{user['imagen_perfil']}})"></div>
+      <div class="imagen d-flex justify-content-center flex-column">
+        <img src="{{user['imagen']}}" alt="" />
+        <h4>{{user['nombre']}} {{user['apellidos']}}</h4>
+      </div>
+  </div>
+  <div class="row justify-content-between">
+    <div class="titulo">
+      <h1>Amigos</h1>
+    </div>
+    <div class="listadoUsuarios flex-row" *ngFor="let usuario of followers">
+      <div class="card mb-3" style="max-width: 540px;">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <img src="{{usuario.imagen}}" class="card-img" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-text">{{usuario.nombre}}</h5>
+              <button type="button" class="btn btn-outline-success enviar">Amigos</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

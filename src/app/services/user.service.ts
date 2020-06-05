@@ -6,18 +6,11 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UserService {
 
-  url = 'http://localhost:8000/api/users';
+  url = 'http://localhost:8000/api/user';
 
   constructor(private http: HttpClient) { }
 
 
-  obtenerUsers(token) {
-    return this.http.get(this.url, {
-      headers: {
-        Authorization: 'Bearer ' + token
-      }
-    });
-  }
   addUser(user) {
     return this.http.post(this.url + '/new', user);
   }
@@ -40,6 +33,12 @@ export class UserService {
   }
   search(letra, token) {
     return this.http.get(this.url + '/search/' + letra, { headers: { Authorization: 'Bearer ' + token } });
+  }
+  getName(id) {
+    return this.http.get(this.url + '/name/' + id);
+  }
+  allUsers(token) {
+    return this.http.get(this.url, { headers: { Authorization: 'Bearer ' + token } });
   }
 
 }

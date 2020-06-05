@@ -45,12 +45,18 @@
   width: 80%;
 }
 
+.contactos {
+  margin-top: 100px;
+  position: relative !important;
+  display: flex;
+  justify-content: flex-end;
+}
+
 .contacts {
-  margin-top: 115px;
+  position: fixed;
+  margin-top: 20px;
 }
-.contacts button{
-  margin: 10px 0;
-}
+
 .enviar {
   height: 38px;
   border-color: $verdePrincipal;

@@ -1,0 +1,49 @@
+<app-menu-home></app-menu-home>
+<div class="container">
+  <div class="row">
+    <div class="col-xl-8 col-lg-8 col-md-8 d-flex flex-column posts">
+    <div class="card-deck" *ngFor="let post of posts">
+      <div class="card">
+        <div class="card-body">
+          <p class="card-text"><img src="{{post.user.imagen}}" class="imagen-perfil" />{{post.user.nombre}}</p>
+          <p class="card-text fecha">{{post.created_at | date:'short'}}</p>
+          <h5 class="card-title">{{post.titulo}}</h5>
+        </div>
+        <div class="imagen-post">
+          <img src="{{post.imagen}}" class="card-img-top" alt="">
+        </div>
+        <div class="card-body">
+          <div class="card-text contadores d-flex justify-content-between flex-row">
+            <p class="text-muted">{{post.nLike}} Likes</p>
+            <div class="text-muted" *ngIf="post.comments.length > 1">
+              <a (click)="openComment(post.id)">{{post.comments.length}} commentarios</a>
+            </div>
+          </div>
+          <div class="card-text commentarios" id="commentarios{{post.id}}">
+            <div class="comments" *ngFor="let comment of post.comments">
+              <p>
+                <img class="imagen-comment" src="{{post.user.imagen}}" alt="foto de perfil" />
+                {{comment.nombre}}
+              </p>
+              <p>{{comment.comment}}</p>
+            </div>
+          </div>
+          <div class="card-text likes d-flex flex-row align-items-center">
+            <div *ngIf="post.color === 'blue'; then thenBlock else elseBlock"></div>
+            <ng-template #thenBlock>
+              <a (click)="darLike(post)"><i style="color:'blue'" class="far fa-hand-spock"></i> Like</a>
+            </ng-template>
+            <ng-template #elseBlock>
+              <a (click)="dislikes(post)"><i style="color:'red'" class="far fa-hand-spock"></i> Dislike</a>
+            </ng-template>
+            <form #formComment="ngForm" class="formComment" (submit)="newComment(formComment,post.id)">
+              <input type="text" ngModel name="comment" class="form-control" placeholder="Escribe un commentario" />
+              <button type="submit" class="btn btn-outline-success">Enviar</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+</div>
+</div>

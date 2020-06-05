@@ -2,15 +2,6 @@
 <div class="container">
   <div class="row">
     <div class="col-xl-8 col-lg-8 col-md-8 d-flex flex-column posts">
-      <div class="card-deck">
-        <div class="card">
-          <div class="card-body d-flex flex-row">
-            <img src="{{user['imagen']}}" alt="..." class="imagen-perfil">
-            <input type="text" class="form-control" placeholder="¿Que quieres contar?" />
-            <button type="button" class="btn btn-outline-success enviar">Enviar</button>
-          </div>
-        </div>
-      </div>
       <div class="card-deck" *ngFor="let post of posts">
         <div class="card">
           <div class="card-body">
@@ -24,16 +15,17 @@
           <div class="card-body">
             <div class="card-text contadores d-flex justify-content-between flex-row">
               <p class="text-muted">{{post.nLike}} Likes</p>
-              <div class="text-muted" *ngIf="post.coments.length > 1">
-                <a (click)="openComent(post.id)">{{post.coments.length}} comentarios</a>
+              <div class="text-muted" *ngIf="post.comments?.length > 0 ">
+                <a (click)="openComment(post.id)">{{post.comments?.length}} commentarios</a>
               </div>
             </div>
-            <div class="card-text comentarios" id="comentarios{{post.id}}">
-              <div class="coments" *ngFor="let element of post.coments">
+            <div class="card-text commentarios" id="commentarios{{post.id}}">
+              <div class="comments" *ngFor="let comment of post.comments">
                 <p>
-                  <img class="imagen-coment" src="{{element.imagen}}" alt="foto de perfil" /> {{element.nombre}}
+                  <img class="imagen-comment" src="{{comment.user.imagen}}" alt="foto de perfil" />
+                  {{comment.user.nombre}}
                 </p>
-                <p>{{element.pivot.coment}}</p>
+                <p>{{comment.comment}}</p>
               </div>
             </div>
             <div class="card-text likes d-flex flex-row align-items-center">
@@ -44,7 +36,10 @@
               <ng-template #elseBlock>
                 <a (click)="dislikes(post)"><i style="color:'red'" class="far fa-hand-spock"></i> Dislike</a>
               </ng-template>
-              <input type="text" class="form-control" placeholder="Escribe un comentario" />
+              <form #formComment="ngForm" class="formComment" (submit)="newComment(formComment,post.id)">
+                <input type="text" ngModel name="comment" class="form-control" placeholder="Escribe un commentario" />
+                <button type="submit" class="btn btn-outline-success">Enviar</button>
+              </form>
             </div>
           </div>
         </div>
@@ -52,10 +47,17 @@
     </div>
     <div class="col-xl-4 col-lg-4 col-md-4 contactos">
       <div class="contacts">
-        <h5>Contactos</h5>
-        <p *ngFor="let miembro of miembros">
-          {{miembro.nombre}}
-        </p>
+        <div class="card">
+          <div class="card-body">
+            <div class="card-title d-flex flex-row">
+              <img src="{{user['imagen']}}" alt="..." class="imagen-perfil">
+              <h5>{{user['nombre']}}</h5>
+            </div>
+            <textarea type="text" [(ngModel)]="titulo" class="form-control"
+              placeholder="¿Que quieres contar?"></textarea>
+            <button (click)="publicarPost()" type="button" class="btn btn-outline-success enviar">Enviar</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>

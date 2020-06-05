@@ -4,9 +4,9 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class PostsService {
+export class PostService {
 
-  URL = 'http://localhost:8000/api/posts';
+  URL = 'http://localhost:8000/api/post';
 
   constructor(private http: HttpClient) { }
 
@@ -17,8 +17,20 @@ export class PostsService {
       }
     });
   }
-  addPost(body) {
-    return this.http.post(this.URL, body);
+  obtenerPostsPerfil(id, token) {
+    console.log('llego')
+    return this.http.get(this.URL + '/perfil/' + id, {
+      headers: {
+        Authorization: 'Bearer ' + token
+      }
+    });
+  }
+  addPost(body, token) {
+    return this.http.post(this.URL + '/new', body, {
+      headers: {
+        Authorization: 'Bearer ' + token
+      }
+    });
   }
   like(body, token) {
     return this.http.post(this.URL + '/like', body, {
@@ -28,7 +40,6 @@ export class PostsService {
     });
   }
   dislikes(body, token) {
-    console.log(body)
     return this.http.post(this.URL + '/dislike', body, {
       headers: {
         Authorization: 'Bearer ' + token

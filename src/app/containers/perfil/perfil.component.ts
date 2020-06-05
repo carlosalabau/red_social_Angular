@@ -1,46 +1,32 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../services/user.service';
 import { PostService } from 'src/app/services/post.service';
+import { UserService } from 'src/app/services/user.service';
 import { CommentService } from 'src/app/services/comment.service';
 import { NgForm } from '@angular/forms';
-import { FollowerService } from 'src/app/services/follower.service';
 declare var $: any;
+
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'app-perfil',
+  templateUrl: './perfil.component.html',
+  styleUrls: ['./perfil.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class PerfilComponent implements OnInit {
+
+  constructor(private postService: PostService, private userService: UserService, private commentService: CommentService) { }
   ids = {
     id_post: Number,
     id_user: Number
   };
-  followers = [];
   posts = [];
   user = {};
-  color = 'blue';
-  publicPost = {
-    titulo: '',
-    id_user: Number
-  };
-  titulo = '';
-  nombre = [];
-
-  constructor(
-    private userService: UserService,
-    private postService: PostService,
-    private commentService: CommentService,
-    private followerService: FollowerService
-
-  ) { }
-
   ngOnInit(): void {
     this.listarUser();
   }
 
+
   listarPosts() {
     const token = localStorage.getItem('token');
-    this.postService.obtenerPosts(token).subscribe((res: any) => {
+    this.postService.obtenerPostsPerfil(this.user['id'],token).subscribe((res: any) => {
       this.posts = res;
       console.log(this.posts)
       this.comprobarLike();
@@ -51,8 +37,10 @@ export class HomeComponent implements OnInit {
     this.userService.getUser(token).subscribe((res: any) => {
       this.user = res;
       this.listarPosts();
-      this.listFollowers();
     });
+  }
+  openComment(id) {
+    $('#commentarios' + id).toggle();
   }
   comprobarLike() {
     this.posts.forEach(post => {
@@ -85,9 +73,6 @@ export class HomeComponent implements OnInit {
       post.nLike = res.nDislike;
     });
   }
-  openComment(id) {
-    $('#commentarios' + id).toggle();
-  }
   newComment(formComment: NgForm, id_post) {
     const token = localStorage.getItem('token');
     formComment.value.id_post = id_post;
@@ -96,24 +81,5 @@ export class HomeComponent implements OnInit {
       this.listarPosts();
     });
   }
-  listFollowers() {
-    const token = localStorage.getItem('token');
-    this.followerService.getFollows(this.user['id'], token).subscribe((res: any) => {
-      this.followers = res;
-    });
-  }
-  publicarPost() {
-    const token = localStorage.getItem('token');
-    this.publicPost.titulo = this.titulo;
-    this.publicPost.id_user = this.user['id'];
-    this.postService.addPost(this.publicPost, token).subscribe(() => {
-    });
-  }
-  listName(id) {
-    const token = localStorage.getItem('token');
-    this.userService.getName(id).subscribe((res: any) => {
-      console.log(res)
-    });
-  }
+}
 
-} // Cierre final
