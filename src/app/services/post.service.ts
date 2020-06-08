@@ -18,7 +18,6 @@ export class PostService {
     });
   }
   obtenerPostsPerfil(id, token) {
-    console.log('llego')
     return this.http.get(this.URL + '/perfil/' + id, {
       headers: {
         Authorization: 'Bearer ' + token
@@ -45,6 +44,12 @@ export class PostService {
         Authorization: 'Bearer ' + token
       }
     });
+  }
+  delete(id, token) {
+    return this.http.delete(this.URL + '/delete/' + id, { headers: { Authorization: 'Bearer ' + token } });
+  }
+  update(body, id, token) {
+    return this.http.post(this.URL + '/update/' + id, body, { headers: { Authorization: 'Bearer ' + token } })
   }
 
 }

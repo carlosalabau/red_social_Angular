@@ -61,7 +61,7 @@
   height: 38px;
   border-color: $verdePrincipal;
   color: $verdePrincipal;
-  margin-left: 10px;
+  margin-top: 10px;
 }
 
 .enviar:hover, .formComment button:hover{
@@ -103,4 +103,46 @@
   border-color: $verdePrincipal;
   color: $verdePrincipal;
   padding: 0 30px;
+}
+.gestionar i{
+  padding: 0 5px;
+  color: $verdePrincipal;
+  font-size: 16px;
+}
+.editPost{
+  position: fixed;
+  display: none;
+  margin-top:375px;
+  width: 365px;
+}
+.title{
+  margin-bottom: 10px;
+}
+.notification{
+  position: fixed;
+  display: none;
+  top: 115px;
+  right: 20%;
+  z-index: 999;
+  height: auto;
+  background: $verdePrincipal;
+  color: white;
+}
+.notification p{
+  margin: 0;
+  padding:15px 35px;
+}
+.fas .fa-check{
+  color: $verdePrincipal;
+  margin-right: 10px;
+}
+.custom-file-input:lang(en)~.custom-file-label::after {
+  content: 'Archivo';
+}
+.editImagePerfil{
+  width: 365px;
+  position: fixed;
+  border: 1px solid #eee;
+  padding: 20px;
+  margin-top:115px;
 }

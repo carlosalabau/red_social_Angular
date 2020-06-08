@@ -1,17 +1,29 @@
 <app-menu-home></app-menu-home>
 <div class="container">
   <div class="row">
+    <div class="notification">
+      <p><i class="fas fa-check"></i> {{mensaje}}</p>
+    </div>
     <div class="col-xl-8 col-lg-8 col-md-8 d-flex flex-column posts">
     <div class="card-deck" *ngFor="let post of posts">
       <div class="card">
         <div class="card-body">
-          <p class="card-text"><img src="{{post.user.imagen}}" class="imagen-perfil" />{{post.user.nombre}}</p>
-          <p class="card-text fecha">{{post.created_at | date:'short'}}</p>
+          <div class="gestionar d-flex flex-row justify-content-end" *ngIf="user['id'] == this.id">
+            <a (click)="openEditPost(post.id,post.titulo)"><i class="fas fa-pencil-alt"></i></a>
+            <a (click)="deletePost(post.id)"><i class="fas fa-trash-alt"></i></a>
+          </div>
+          <p class="card-text" *ngIf="!post.user.imagen.includes('http')">
+            <img src="http://localhost:8000/img/{{post.user.imagen}}" class="imagen-perfil" />{{post.user.nombre}}
+          </p>
+          <p class="card-text" *ngIf="post.user.imagen.includes('http')">
+            <img src="{{post.user.imagen}}" class="imagen-perfil" />{{post.user.nombre}}
+          </p>
+            <p class="card-text fecha">{{post.updated_at | date:'short'}}</p>
           <h5 class="card-title">{{post.titulo}}</h5>
         </div>
-        <div class="imagen-post">
-          <img src="{{post.imagen}}" class="card-img-top" alt="">
-        </div>
+        <div class="imagen-post" *ngIf="post.imagen.includes('http'); then bd else random"></div>
+        <ng-template #random><img src="http://localhost:8000/img/{{post.imagen}}" class="card-img-top" alt=""></ng-template>
+        <ng-template #bd><img src="{{post.imagen}}" class="card-img-top" alt=""></ng-template>
         <div class="card-body">
           <div class="card-text contadores d-flex justify-content-between flex-row">
             <p class="text-muted">{{post.nLike}} Likes</p>
@@ -44,6 +56,38 @@
         </div>
       </div>
     </div>
+    </div>
+    <div class="col-xl-4 col-lg-4 col-md-4">
+      <div class="editImagePerfil" *ngIf="user['id'] == this.id">
+        <p>Imagen de perfil</p>
+        <div class="custom-file">
+          <input type="file" #imagePerfil class="custom-file-input" id="inputGroupFile04"
+            aria-describedby="inputGroupFileAddon04">
+          <label class="custom-file-label" for="inputGroupFile04">Elige un archivo</label>
+        </div>
+        <p>Imagen personal</p>
+        <div class="custom-file">
+          <input type="file" #imagePersonal class="custom-file-input" id="inputGroupFile04"
+            aria-describedby="inputGroupFileAddon04">
+          <label class="custom-file-label" for="inputGroupFile04">Elige un archivo</label>
+        </div>
+        <button type="submit" (click)="updateImages(imagePersonal, imagePerfil)" class="btn btn-outline-success enviar">Enviar</button>
+      </div>
+      <div class="editPost">
+        <div class="card">
+          <div class="card-body">
+            <form method="POST" (submit)="updatePost(formUpPost, updateImg)" #formUpPost="ngForm" enctype="multipart/form-data">
+              <textarea type="text" [(ngModel)]="titulo" ngModel name="titulo" class="form-control title" placeholder="¿Que quieres contar?"></textarea>
+              <div class="custom-file">
+                <input type="file" #updateImg class="custom-file-input" id="inputGroupFile04"
+                  aria-describedby="inputGroupFileAddon04">
+                <label class="custom-file-label" for="inputGroupFile04">Elige un archivo</label>
+              </div>
+              <button type="submit" class="btn btn-outline-success enviar">Enviar</button>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
 </div>
 </div>

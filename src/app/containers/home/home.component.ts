@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { PostService } from 'src/app/services/post.service';
 import { CommentService } from 'src/app/services/comment.service';
@@ -21,11 +21,12 @@ export class HomeComponent implements OnInit {
   color = 'blue';
   publicPost = {
     titulo: '',
-    id_user: Number
+    id_user: Number,
+    imagen: ''
   };
   titulo = '';
   nombre = [];
-
+  mensaje = '';
   constructor(
     private userService: UserService,
     private postService: PostService,
@@ -92,7 +93,12 @@ export class HomeComponent implements OnInit {
     const token = localStorage.getItem('token');
     formComment.value.id_post = id_post;
     formComment.value.id_user = this.user['id'];
+    this.mensaje = 'Comentario insertado con exito';
     this.commentService.addComment(formComment.value, token).subscribe(() => {
+      $('.notification').fadeIn();
+      setTimeout(() => {
+        $('.notification').fadeOut();
+      }, 3000);
       this.listarPosts();
     });
   }
@@ -102,17 +108,20 @@ export class HomeComponent implements OnInit {
       this.followers = res;
     });
   }
-  publicarPost() {
+  publicarPost(formPost: NgForm, imageInput) {
     const token = localStorage.getItem('token');
-    this.publicPost.titulo = this.titulo;
-    this.publicPost.id_user = this.user['id'];
-    this.postService.addPost(this.publicPost, token).subscribe(() => {
-    });
-  }
-  listName(id) {
-    const token = localStorage.getItem('token');
-    this.userService.getName(id).subscribe((res: any) => {
-      console.log(res)
+    const postFormData = new FormData();
+    postFormData.set('titulo', formPost.value.titulo);
+    postFormData.set('imagen', imageInput.files[0]);
+    const imagen = postFormData.get('imagen');
+    console.log(imagen)
+    this.mensaje = 'Post publicado con exito';
+    this.postService.addPost(postFormData, token).subscribe(() => {
+      $('.notification').fadeIn();
+      setTimeout(() => {
+        $('.notification').fadeOut();
+      }, 3000);
+      this.listarPosts();
     });
   }
 

@@ -1,30 +1,26 @@
 <app-menu-home></app-menu-home>
 <div class="container">
   <div class="row">
-    <div class="imagen-perfil" style="background: url({{user['imagen_perfil']}})"></div>
+    <div class="imagen-perfil" style="background: url(http://localhost:8000/img/{{user['imagen_perfil']}})"></div>
       <div class="imagen d-flex justify-content-center flex-column">
-        <img src="{{user['imagen']}}" alt="" />
+        <img src="http://localhost:8000/img/{{user['imagen']}}" alt="" />
         <h4>{{user['nombre']}} {{user['apellidos']}}</h4>
       </div>
   </div>
-  <div class="row justify-content-between">
+  <div class="row justify-content-between follows">
     <div class="titulo">
       <h1>Amigos</h1>
     </div>
-    <div class="listadoUsuarios flex-row" *ngFor="let usuario of followers">
-      <div class="card mb-3" style="max-width: 540px;">
-        <div class="row no-gutters">
-          <div class="col-md-4">
-            <img src="{{usuario.imagen}}" class="card-img" alt="...">
-          </div>
-          <div class="col-md-8">
-            <div class="card-body">
-              <h5 class="card-text">{{usuario.nombre}}</h5>
-              <button type="button" class="btn btn-outline-success enviar">Amigos</button>
-            </div>
-          </div>
+      <div class="box d-flex flex-row align-items-center justify-content-between" *ngFor="let usuario of followers">
+        <div class="imagenBox">
+          <img src="{{usuario.imagen}}" alt="">
+        </div>
+        <div class="tituloBox">
+          <h6>{{usuario.nombre}}</h6>
+        </div>
+        <div class="botonBox">
+          <button type="button" class="btn btn-outline-success enviar">Amigos</button>
         </div>
       </div>
     </div>
-  </div>
 </div>

@@ -1,28 +1,37 @@
 <app-menu-home></app-menu-home>
 <div class="container">
   <div class="row">
+    <div class="notification">
+      <p><i class="fas fa-check"></i> {{mensaje}}</p>
+    </div>
     <div class="col-xl-8 col-lg-8 col-md-8 d-flex flex-column posts">
       <div class="card-deck" *ngFor="let post of posts">
         <div class="card">
           <div class="card-body">
-            <p class="card-text"><img src="{{post.user.imagen}}" class="imagen-perfil" />{{post.user.nombre}}</p>
+            <p class="card-text" *ngIf="!post.user.imagen.includes('http')">
+              <img src="http://localhost:8000/img/{{post.user.imagen}}" class="imagen-perfil" />{{post.user.nombre}}
+            </p>
+            <p class="card-text" *ngIf="post.user.imagen.includes('http')">
+              <img src="{{post.user.imagen}}" class="imagen-perfil" />{{post.user.nombre}}
+            </p>
             <p class="card-text fecha">{{post.created_at | date:'short'}}</p>
             <h5 class="card-title">{{post.titulo}}</h5>
           </div>
-          <div class="imagen-post">
-            <img src="{{post.imagen}}" class="card-img-top" alt="">
-          </div>
+          <div class="imagen-post" *ngIf="post.imagen.includes('http'); then bd else random"></div>
+          <ng-template #random><img src="http://localhost:8000/img/{{post.imagen}}" class="card-img-top" alt=""></ng-template>
+          <ng-template #bd><img src="{{post.imagen}}" class="card-img-top" alt=""></ng-template>
           <div class="card-body">
             <div class="card-text contadores d-flex justify-content-between flex-row">
-              <p class="text-muted">{{post.nLike}} Likes</p>
+              <p class="text-muted" *ngIf="post.likes?.length > 0 ">{{post.nLike}} Likes</p>
               <div class="text-muted" *ngIf="post.comments?.length > 0 ">
-                <a (click)="openComment(post.id)">{{post.comments?.length}} commentarios</a>
+                <a (click)="openComment(post.id)">{{post.comments?.length}} comentarios</a>
               </div>
             </div>
             <div class="card-text commentarios" id="commentarios{{post.id}}">
               <div class="comments" *ngFor="let comment of post.comments">
                 <p>
-                  <img class="imagen-comment" src="{{comment.user.imagen}}" alt="foto de perfil" />
+                  <span *ngIf="comment.user.imagen.includes('http')"><img class="imagen-comment" src="{{comment.user.imagen}}" alt="foto de perfil" /></span>
+                  <span *ngIf="!comment.user.imagen.includes('http')"><img class="imagen-comment" src="http://localhost:8000/img/{{comment.user.imagen}}" alt="foto de perfil" /></span>
                   {{comment.user.nombre}}
                 </p>
                 <p>{{comment.comment}}</p>
@@ -37,8 +46,9 @@
                 <a (click)="dislikes(post)"><i style="color:'red'" class="far fa-hand-spock"></i> Dislike</a>
               </ng-template>
               <form #formComment="ngForm" class="formComment" (submit)="newComment(formComment,post.id)">
-                <input type="text" ngModel name="comment" class="form-control" placeholder="Escribe un commentario" />
-                <button type="submit" class="btn btn-outline-success">Enviar</button>
+                <input type="text" ngModel name="comment" class="form-control" placeholder="Escribe un comentario" />
+                <button type="submit" class="btn btn-outline-success" data-toggle="modal"
+                  data-target="#notification">Enviar</button>
               </form>
             </div>
           </div>
@@ -49,13 +59,24 @@
       <div class="contacts">
         <div class="card">
           <div class="card-body">
-            <div class="card-title d-flex flex-row">
-              <img src="{{user['imagen']}}" alt="..." class="imagen-perfil">
-              <h5>{{user['nombre']}}</h5>
-            </div>
-            <textarea type="text" [(ngModel)]="titulo" class="form-control"
-              placeholder="¿Que quieres contar?"></textarea>
-            <button (click)="publicarPost()" type="button" class="btn btn-outline-success enviar">Enviar</button>
+            <form method="POST" (submit)="publicarPost(formPost, imageInput)" #formPost="ngForm" enctype="multipart/form-data">
+              <div class="card-title d-flex flex-row">
+                <p class="card-text" *ngIf="!user['imagen']?.includes('http')">
+                  <img src="http://localhost:8000/img/{{user['imagen']}}" class="imagen-perfil" />
+                </p>
+                <p class="card-text" *ngIf="user['imagen'].includes('http')">
+                  <img src="{{user['imagen']}}" class="imagen-perfil" />
+                </p>
+                <h5>{{user['nombre']}}</h5>
+              </div>
+              <textarea type="text" ngModel name="titulo" class="form-control"
+                placeholder="¿Que quieres contar?"></textarea>
+                <div class="custom-file">
+                  <input type="file" #imageInput class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                  <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                </div>
+              <button type="submit" class="btn btn-outline-success enviar">Enviar</button>
+            </form>
           </div>
         </div>
       </div>

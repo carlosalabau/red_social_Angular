@@ -47,6 +47,7 @@
 
 .contacts {
   margin-top: 115px;
+  width: 365px;
 }
 .contacts button{
   margin: 10px 0;
@@ -97,4 +98,31 @@
   border-color: $verdePrincipal;
   color: $verdePrincipal;
   padding: 0 30px;
+}
+/* .custom-file-input:lang(en)~.custom-file-label::after {
+  content: 'Archivo';
+} */
+textarea{
+  margin-bottom: 10px;
+}
+.notification{
+  position: fixed;
+  display: none;
+  top: 115px;
+  right: 20%;
+  z-index: 999;
+  height: auto;
+  background: $verdePrincipal;
+  color: white;
+}
+.notification p{
+  margin: 0;
+  padding:15px 35px;
+}
+.fas .fa-check{
+  color: $verdePrincipal;
+  margin-right: 10px;
+}
+.container{
+  position: relative;
 }

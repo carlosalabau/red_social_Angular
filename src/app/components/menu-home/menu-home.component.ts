@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
-
+declare var $: any;
 @Component({
   selector: 'app-menu-home',
   templateUrl: './menu-home.component.html',
   styleUrls: ['./menu-home.component.scss']
 })
-export class MenuHomeComponent implements OnInit {
+export class MenuHomeComponent {
 
   constructor(private userService: UserService, private router: Router) { }
 
@@ -15,9 +15,10 @@ export class MenuHomeComponent implements OnInit {
   user = {};
   nombres = [];
   display = 'none';
-
-  ngOnInit(): void {
+  @ViewChild('buscador') buscador: ElementRef;
+  ngAfterViewInit(): void {
     this.listarUser();
+    this.focusOut();
   }
 
   listarUser() {
@@ -37,6 +38,7 @@ export class MenuHomeComponent implements OnInit {
     const token = localStorage.getItem('token');
     if (this.letra.length < 1) {
       this.display = 'none';
+      this.letra = '';
       return;
     }
     this.userService.search(letra, token).subscribe((res: any) => {
@@ -44,4 +46,17 @@ export class MenuHomeComponent implements OnInit {
       this.display = 'block';
     });
   }
+
+  focusOut() {
+
+    this.buscador.nativeElement.addEventListener('focusout', (event) => {
+      setTimeout(() => {
+        this.display = 'none';
+        this.letra = '';
+        $('#buscador').val('');
+      }, 1500);
+
+    });
+  }
+
 }

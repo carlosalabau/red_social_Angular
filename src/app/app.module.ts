@@ -8,12 +8,11 @@ import { HomeComponent } from './containers/home/home.component';
 import { RegistroComponent } from './containers/registro/registro.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { MenuHomeComponent } from './components/menu-home/menu-home.component';
-import { AddPostComponent } from './containers/add-post/add-post.component';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './containers/login/login.component';
-import { CommentsComponent } from './containers/comments/comments.component';
 import { PerfilComponent } from './containers/perfil/perfil.component';
 import { UsersComponent } from './containers/users/users.component';
+import { DetallePerfilComponent } from './containers/detalle-perfil/detalle-perfil.component';
 
 @NgModule({
   declarations: [
@@ -22,11 +21,10 @@ import { UsersComponent } from './containers/users/users.component';
     RegistroComponent,
     MenuComponent,
     MenuHomeComponent,
-    AddPostComponent,
     LoginComponent,
-    CommentsComponent,
     PerfilComponent,
-    UsersComponent
+    UsersComponent,
+    DetallePerfilComponent,
   ],
   imports: [
     BrowserModule,

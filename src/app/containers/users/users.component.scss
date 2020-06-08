@@ -1,51 +1,88 @@
 @import '../../../styles.scss';
-.titulo{
+
+.titulo {
   width: 100%;
   margin: 20px 0;
 }
-.card img{
+
+.card img {
   padding: 10px;
 }
-.card-body{
+
+.card-body {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   height: 100%;
 }
 
-.imagen-perfil{
+.imagen-perfil {
   width: 100%;
   height: 500px;
   overflow: hidden;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  background-position: center !important;
 }
+
 .enviar {
   height: 38px;
   border-color: $verdePrincipal;
   color: $verdePrincipal;
 }
-.enviar:active{
+
+.enviar:active {
   background-color: $verdePrincipal;
 }
 
-.enviar:hover{
+.enviar:hover {
   background-color: $verdePrincipal;
   color: white;
 }
-.imagen{
-    width: 100%;
-    margin-top: -100px;
-  img{
+
+.imagen {
+  width: 100%;
+  margin-top: -100px;
+
+  img {
     width: 200px;
     border-radius: 50%;
     margin: auto;
     display: block;
   }
-  h4{
+
+  h4 {
     text-align: center;
     margin-top: 10px;
     text-transform: capitalize;
   }
+}
+
+.box {
+  height: 110px;
+  border: 1px solid #eee;
+  max-width: 50%;
+  min-width: 49%;
+  margin: 5px 0;
+}
+
+.imagenBox {
+  height: 100%;
+  padding: 5px;
+  img {
+    height: 100%;
+    padding: 5px 0;
+  }
+}
+.botonBox{
+  padding: 20px;
+}
+.tituloBox {
+  text-align: center;
+  h6{
+    font-size: 20px;
+  }
+}
+.follows{
+  margin-bottom: 50px;
 }
