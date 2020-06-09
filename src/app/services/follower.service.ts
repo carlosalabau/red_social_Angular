@@ -11,5 +11,12 @@ export class FollowerService {
   getFollows(id, token) {
     return this.http.get(this.url + id, { headers: { Authorization: 'Bearer ' + token } });
   }
+  addFollow(body, token) {
+    return this.http.post(this.url + 'add', body, { headers: { Authorization: 'Bearer ' + token } });
+  }
+  deleteFollow(body,token){
+    console.log(body)
+    return this.http.post(this.url + 'delete', body, { headers: { Authorization: 'Bearer ' + token } });
+  }
 
 }

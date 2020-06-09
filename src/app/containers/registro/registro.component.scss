@@ -2,7 +2,7 @@
 .container-fluid{
     height: 100vh;
     background-size: contain;
-    background: url('src/assets/img/skate.png')repeat; 
+    background: url('src/assets/img/skate.png')repeat;
 }
 .formulario{
     background-color: white;
@@ -23,4 +23,19 @@
 .registro{
     background-color: $verdePrincipal;
     border:none;
+}
+.notification{
+  position: fixed;
+  display: none;
+  top: 115px;
+  right: 10%;
+  z-index: 999;
+  height: auto;
+  background: $negroMenu;
+  max-width: 600px;
+}
+.notification p{
+  margin: 0;
+  padding:15px 35px;
+  color: white;
 }

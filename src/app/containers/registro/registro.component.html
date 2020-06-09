@@ -1,41 +1,47 @@
 <app-menu></app-menu>
 <app-login></app-login>
 <div class="container-fluid">
-    <div class="row">
-      <form class="formulario col-xl-4 col-lg-4 col-md-4" #formRegistro="ngForm" (submit)="nuevoUser(formRegistro)">
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="inputEmail4">Nombre</label>
-            <input type="text" name="nombre" ngModel class="form-control">
-          </div>
-          <div class="form-group col-md-6">
-            <label for="inputPassword4">Apellidos</label>
-            <input type="text" name="apellidos" ngModel class="form-control">
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="inputAddress">Email</label>
-          <input type="email" name="email" ngModel class="form-control">
-        </div>
-        <div class="form-group">
-          <label for="inputAddress2">Contraseña</label>
-          <input type="password" name="password" ngModel class="form-control">
-        </div>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="inputCity">Edad</label>
-            <input type="number" name="edad" ngModel class="form-control">
-          </div>
-          <div class="form-group col-md-6">
-            <label for="inputState">Sexo</label>
-            <select id="inputState" class="form-control" name="sexo" ngModel>
-              <option selected>Elige...</option>
-              <option>Hombre</option>
-              <option>Mujer</option>
-            </select>
-          </div>
-        </div>
-        <button type="submit" class="btn btn-primary registro" data-toggle="login">Registrarse</button>
-      </form>
+  <div class="row">
+    <div class="notification">
+      <span *ngFor="let msg of mensaje">
+      <p><i class="fas fa-exclamation"></i> {{msg}}<br></p>
+      </span>
     </div>
+    <form class="formulario col-xl-4 col-lg-4 col-md-4" #formRegistro="ngForm" (submit)="nuevoUser(formRegistro)">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputEmail4">Nombre</label>
+          <input type="text" name="nombre" ngModel required class="form-control">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputPassword4">Apellidos</label>
+          <input type="text" required name="apellidos" ngModel class="form-control">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputAddress">Email</label>
+        <input type="email" required name="email" ngModel class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="inputAddress2">Contraseña</label>
+        <input type="password" required name="password" ngModel class="form-control" aria-describedby="passhelp">
+        <small id="passhelp" class="form-text text-muted">Debe tener entre 8 y 20 caracteres</small>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputCity">Edad</label>
+          <input type="number" required name="edad" ngModel class="form-control">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputState">Sexo</label>
+          <select id="inputState" required class="custom-select" name="sexo" ngModel>
+            <option>Hombre</option>
+            <option>Mujer</option>
+          </select>
+        </div>
+      </div>
+      <button type="submit" [disabled]="formRegistro.invalid" class="btn btn-primary registro"
+        data-toggle="login">Registrarse</button>
+    </form>
+  </div>
 </div>

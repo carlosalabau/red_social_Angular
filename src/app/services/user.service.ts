@@ -41,7 +41,6 @@ export class UserService {
     return this.http.get(this.url, { headers: { Authorization: 'Bearer ' + token } });
   }
   updateImagesUser(body, token){
-    console.log(body);
     return this.http.post(this.url + '/upload', body, { headers: { Authorization: 'Bearer ' + token } })
   }
 

@@ -4,9 +4,10 @@
     <div class="notification">
       <p><i class="fas fa-check"></i> {{mensaje}}</p>
     </div>
-    <div class="col-xl-8 col-lg-8 col-md-8 d-flex flex-column posts">
+    <div class="col-xl-8 col-lg-8 col-md-8 d-flex flex-column posts" >
+      <h1 *ngIf="posts.length === 0">Todavia no has publicado nada</h1>
     <div class="card-deck" *ngFor="let post of posts">
-      <div class="card">
+      <div class="card" *ngIf="posts.length > 0" >
         <div class="card-body">
           <div class="gestionar d-flex flex-row justify-content-end" *ngIf="user['id'] == this.id">
             <a (click)="openEditPost(post.id,post.titulo)"><i class="fas fa-pencil-alt"></i></a>
@@ -28,7 +29,7 @@
           <div class="card-text contadores d-flex justify-content-between flex-row">
             <p class="text-muted">{{post.nLike}} Likes</p>
             <div class="text-muted" *ngIf="post.comments.length > 1">
-              <a (click)="openComment(post.id)">{{post.comments.length}} commentarios</a>
+              <a (click)="openComment(post.id)">{{post.comments.length}} comentarios</a>
             </div>
           </div>
           <div class="card-text commentarios" id="commentarios{{post.id}}">

@@ -13,6 +13,8 @@
               <tr *ngFor="let element of nombres">
                 <td class="nombreBusqueda">{{element.nombre}}</td>
                 <td><a routerLink="/perfil/{{element.id}}"><button class="btn btn-outline-success visitar" type="button">Visitar</button></a></td>
+                <td><button class="btn btn-outline-success visitar" (click)="follow(element.id)" type="button" *ngIf="element.follow === 'no'">Seguir</button>
+                <button class="btn btn-outline-danger" (click)="unfollow(element.id)" type="button" *ngIf="element.follow === 'yes'">No seguir</button></td>
               </tr>
             </table>
           </div>

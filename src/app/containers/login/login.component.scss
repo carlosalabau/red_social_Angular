@@ -1,3 +1,5 @@
+@import '../../../styles.scss';
+
 .modal-body{
     padding: 50px 20px;
 }
@@ -9,4 +11,19 @@
     right: 0;
     top: 0;
     margin: 5px 5px 0 0;
+}
+.notification{
+  position: fixed;
+  display: none;
+  top: 115px;
+  right: 5%;
+  z-index: 1100;
+  height: auto;
+  background: $negroMenu;
+  max-width: 600px;
+}
+.notification p{
+  margin: 0;
+  padding:15px 35px;
+  color: white;
 }

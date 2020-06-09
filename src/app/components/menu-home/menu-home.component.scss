@@ -33,7 +33,7 @@ nav{
 }
 .resultados{
   position: absolute;
-  width: 280px;
+  width: 415px;
   height: auto;
   background-color: $negroMenu;
   z-index: 999;
@@ -48,9 +48,6 @@ nav{
   width: 180px;
   text-transform: capitalize;
 }
-.resultados button{
-margin-left: 10px;
-}
 .perfil h6{
   text-transform: capitalize;
 }
@@ -58,7 +55,7 @@ margin-left: 10px;
   height: 38px;
   border-color: $verdePrincipal;
   color: $verdePrincipal;
-  margin-left: 10px;
+  width: 95px;
 }
 
 .visitar:hover{
