@@ -5,6 +5,10 @@
       <p><i class="fas fa-check"></i> {{mensaje}}</p>
     </div>
     <div class="col-xl-8 col-lg-8 col-md-8 d-flex flex-column posts">
+      <div *ngIf="posts.length === 0" class="d-flex justify-content-center spinner">
+        <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status"></div>
+        <div class="titleSpinner">Cargando datos...</div>
+      </div>
       <div class="card-deck" *ngFor="let post of posts">
         <div class="card">
           <div class="card-body">
@@ -30,8 +34,8 @@
             <div class="card-text commentarios" id="commentarios{{post.id}}">
               <div class="comments" *ngFor="let comment of post.comments">
                 <p>
-                  <span *ngIf="comment.user.imagen.includes('http')"><img class="imagen-comment" src="{{comment.user.imagen}}" alt="foto de perfil" /></span>
-                  <span *ngIf="!comment.user.imagen.includes('http')"><img class="imagen-comment" src="http://localhost:8000/img/{{comment.user.imagen}}" alt="foto de perfil" /></span>
+                  <span *ngIf="comment.user.imagen?.includes('http')"><img class="imagen-comment" src="{{comment.user.imagen}}" alt="foto de perfil" /></span>
+                  <span *ngIf="!comment.user.imagen?.includes('http')"><img class="imagen-comment" src="http://localhost:8000/img/{{comment.user.imagen}}" alt="foto de perfil" /></span>
                   {{comment.user.nombre}}
                 </p>
                 <p>{{comment.comment}}</p>
@@ -64,7 +68,7 @@
                 <p class="card-text" *ngIf="!user['imagen']?.includes('http')">
                   <img src="http://localhost:8000/img/{{user['imagen']}}" class="imagen-perfil" />
                 </p>
-                <p class="card-text" *ngIf="user['imagen'].includes('http')">
+                <p class="card-text" *ngIf="user['imagen']?.includes('http')">
                   <img src="{{user['imagen']}}" class="imagen-perfil" />
                 </p>
                 <h5>{{user['nombre']}}</h5>

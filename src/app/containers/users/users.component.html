@@ -1,14 +1,20 @@
 <app-menu-home></app-menu-home>
 <div class="container">
   <div class="row">
-    <div class="imagen-perfil" style="background: url(http://localhost:8000/img/{{user['imagen_perfil']}})"></div>
-      <div class="imagen d-flex justify-content-center flex-column">
-        <img src="http://localhost:8000/img/{{user['imagen']}}" alt="" />
+      <div *ngIf="!user['imagen_perfil']?.includes('https')" class="imagen-perfil" style="background: url(http://localhost:8000/img/{{user['imagen_perfil']}})"></div>
+      <div *ngIf="user['imagen_perfil']?.includes('https')" class="imagen-perfil" style="background: url({{user['imagen_perfil']}})"></div>
+      <div class="imagen d-flex justify-content-center flex-column" >
+        <img *ngIf="!user['imagen']?.includes('https')" src="http://localhost:8000/img/{{user['imagen']}}" alt="" />
+        <img *ngIf="user['imagen']?.includes('https')" src="{{user['imagen']}}" alt="" />
         <h4>{{user['nombre']}} {{user['apellidos']}}</h4>
       </div>
   </div>
   <div class="row justify-content-between follows">
-    <div class="titulo">
+    <div *ngIf="!followers" class="d-flex justify-content-center spinner">
+      <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status"></div>
+      <div class="titleSpinner">Cargando datos...</div>
+    </div>
+    <div class="titulo" *ngIf="followers">
       <h1>Amigos</h1>
     </div>
       <div class="box d-flex flex-row align-items-center justify-content-between" *ngFor="let usuario of followers">

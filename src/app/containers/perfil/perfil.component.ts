@@ -3,6 +3,7 @@ import { PostService } from 'src/app/services/post.service';
 import { UserService } from 'src/app/services/user.service';
 import { CommentService } from 'src/app/services/comment.service';
 import { NgForm } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 declare var $: any;
 @Component({
   selector: 'app-perfil',
@@ -11,20 +12,30 @@ declare var $: any;
 })
 export class PerfilComponent implements OnInit {
 
-  constructor(private postService: PostService, private userService: UserService, private commentService: CommentService) { }
+  constructor(private postService: PostService,
+              private userService: UserService,
+              private commentService: CommentService,
+              private router: ActivatedRoute) { }
+
   titulo = '';
   id: Number;
   ids = {
     id_post: Number,
     id_user: Number
   };
-  posts = [];
+  posts;
   user = {};
   idPost: Number;
   mensaje = '';
   ngOnInit(): void {
     this.listarUser();
     this.getUrl();
+    this.router.params.subscribe(({ search }) => {
+      const token = localStorage.getItem('token');
+      this.userService.search(search, token).subscribe(() => {
+        this.listarPosts();
+      });
+    });
   }
   getUrl() {
     const actual = window.location + '';
@@ -34,16 +45,16 @@ export class PerfilComponent implements OnInit {
     return id;
   }
   listarPosts() {
-    const id = this.getUrl();
     const token = localStorage.getItem('token');
-    this.postService.obtenerPostsPerfil(id, token).subscribe((res: any) => {
+    this.id = this.getUrl();
+    this.postService.obtenerPostsPerfil(this.id, token).subscribe((res: any) => {
       this.posts = res;
-      console.log(this.posts)
       this.comprobarLike();
     });
   }
   listarUser() {
     const token = localStorage.getItem('token');
+    this.getUrl();
     this.userService.getUser(token).subscribe((res: any) => {
       this.user = res;
       this.listarPosts();

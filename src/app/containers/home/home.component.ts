@@ -114,7 +114,6 @@ export class HomeComponent implements OnInit {
     postFormData.set('titulo', formPost.value.titulo);
     postFormData.set('imagen', imageInput.files[0]);
     const imagen = postFormData.get('imagen');
-    console.log(imagen)
     this.mensaje = 'Post publicado con exito';
     this.postService.addPost(postFormData, token).subscribe(() => {
       $('.notification').fadeIn();

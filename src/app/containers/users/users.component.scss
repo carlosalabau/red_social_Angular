@@ -3,6 +3,7 @@
 .titulo {
   width: 100%;
   margin: 20px 0;
+  border-bottom: 1px solid #eee;
 }
 
 .card img {
@@ -85,4 +86,12 @@
 }
 .follows{
   margin-bottom: 50px;
+}
+.spinner-border{
+  color: $verdePrincipal;
+}
+.titleSpinner{
+  margin-left: 10px;
+  margin-top: 10px;
+  font-size: 20px;
 }

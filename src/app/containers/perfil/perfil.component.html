@@ -5,6 +5,10 @@
       <p><i class="fas fa-check"></i> {{mensaje}}</p>
     </div>
     <div class="col-xl-8 col-lg-8 col-md-8 d-flex flex-column posts" >
+<div *ngIf="!posts" class="d-flex justify-content-center spinner">
+  <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status"></div>
+  <div class="titleSpinner">Cargando datos...</div>
+</div>
       <h1 *ngIf="posts.length === 0">Todavia no has publicado nada</h1>
     <div class="card-deck" *ngFor="let post of posts">
       <div class="card" *ngIf="posts.length > 0" >
@@ -13,16 +17,16 @@
             <a (click)="openEditPost(post.id,post.titulo)"><i class="fas fa-pencil-alt"></i></a>
             <a (click)="deletePost(post.id)"><i class="fas fa-trash-alt"></i></a>
           </div>
-          <p class="card-text" *ngIf="!post.user.imagen.includes('http')">
+          <p class="card-text" *ngIf="!post.user.imagen?.includes('http')">
             <img src="http://localhost:8000/img/{{post.user.imagen}}" class="imagen-perfil" />{{post.user.nombre}}
           </p>
-          <p class="card-text" *ngIf="post.user.imagen.includes('http')">
+          <p class="card-text" *ngIf="post.user.imagen?.includes('http')">
             <img src="{{post.user.imagen}}" class="imagen-perfil" />{{post.user.nombre}}
           </p>
             <p class="card-text fecha">{{post.updated_at | date:'short'}}</p>
           <h5 class="card-title">{{post.titulo}}</h5>
         </div>
-        <div class="imagen-post" *ngIf="post.imagen.includes('http'); then bd else random"></div>
+        <div class="imagen-post" *ngIf="post.imagen?.includes('http'); then bd else random"></div>
         <ng-template #random><img src="http://localhost:8000/img/{{post.imagen}}" class="card-img-top" alt=""></ng-template>
         <ng-template #bd><img src="{{post.imagen}}" class="card-img-top" alt=""></ng-template>
         <div class="card-body">
@@ -62,14 +66,14 @@
       <div class="editImagePerfil" *ngIf="user['id'] == this.id">
         <p>Imagen de perfil</p>
         <div class="custom-file">
-          <input type="file" #imagePerfil class="custom-file-input" id="inputGroupFile04"
-            aria-describedby="inputGroupFileAddon04">
+          <input type="file" #imagePerfil class="custom-file-input" id="inputGroupFile01"
+            aria-describedby="inputGroupFileAddon01">
           <label class="custom-file-label" for="inputGroupFile04">Elige un archivo</label>
         </div>
         <p>Imagen personal</p>
         <div class="custom-file">
-          <input type="file" #imagePersonal class="custom-file-input" id="inputGroupFile04"
-            aria-describedby="inputGroupFileAddon04">
+          <input type="file" #imagePersonal class="custom-file-input" id="inputGroupFile02"
+            aria-describedby="inputGroupFileAddon02">
           <label class="custom-file-label" for="inputGroupFile04">Elige un archivo</label>
         </div>
         <button type="submit" (click)="updateImages(imagePersonal, imagePerfil)" class="btn btn-outline-success enviar">Enviar</button>

@@ -68,7 +68,7 @@ export class MenuHomeComponent {
         this.display = 'none';
         this.letra = '';
         $('#buscador').val('');
-      }, 1500);
+      }, 1000);
     });
   }
   follow(id) {

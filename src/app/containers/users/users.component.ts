@@ -12,7 +12,7 @@ export class UsersComponent implements OnInit {
   constructor(private userService: UserService, private followerService: FollowerService) { }
 
   user = {};
-  followers = [];
+  followers = '';
   users = [];
 
   ngOnInit(): void {
