@@ -1,27 +1,51 @@
 # ProyectoFinalAngular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.7.
+Este proyecto ha sido desarrollado con [Angular CLI](https://github.com/angular/angular-cli) version 9.1.7.
+Consiste en una red social donde cualquier usuario se puede registrar y realizar publicaciones, asi como tener amistades. 
+Para una mejor funcionalidad recomiendo vincularlo con el backend de mi repositorio https://github.com/carlosalabau/red_social_backend
 
-## Development server
+## Comenzando
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+### Pre-Requisitos
 
-## Code scaffolding
+Vas a necesitar un IDE como por ejemplo Visual Code Studio.
+Necesitas tener instalado en tu PC NodeJS.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Instalacion
 
-## Build
+Para poder tener el proyecto funcionando en tu PC necesitas realizar lo siguiente:
+  1. Instalar Angular en la carpeta del proyecto, para ello ejecuta el comando npm install -g @angular/cli en la carpeta correspondiente.
+  2. Instalar todas las dependencias del proyecto con el comando "npm install". 
+  3. Para inciar ejecuta el comando "ng serve -o". Se abrira una ventana en tu navegador con la web.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+### Vista previa
 
-## Running unit tests
+Si has seguido todos los pasos y has vinculado el backend con este proyecto veras algo parecido a esto:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Pagina inicial y de registro.
 
-## Running end-to-end tests
+![Screenshot](src/assets/capturas/registro.png)
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Login
 
-## Further help
+![Screenshot](src/assets/capturas/login.png)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Pagina principal una vez te logueas
+
+![Screenshot](src/assets/capturas/principal.png)
+
+Pagina del usuario donde puedes ver tus amistades y fotos de perfil.
+
+![Screenshot](src/assets/capturas/usuario.png)
+
+Pagina de perfil del usuario o usuarios donde editas las imagenes de perfil y la publicacion.
+
+![Screenshot](src/assets/capturas/perfil.png)
+
+Esta es la funcionalidad para buscar usuarios en la web.
+
+![Screenshot](src/assets/capturas/buscador.png)
+
+## Autor
+
+Carlos Alabau - Full Stack Developer
